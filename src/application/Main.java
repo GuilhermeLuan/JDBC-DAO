@@ -1,3 +1,5 @@
+package application;
+
 import db.DB;
 
 public class Main {
