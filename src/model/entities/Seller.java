@@ -21,6 +21,9 @@ public class Seller {
         this.department = department;
     }
 
+    public Seller() {
+    }
+
     public Integer getId() {
         return id;
     }
