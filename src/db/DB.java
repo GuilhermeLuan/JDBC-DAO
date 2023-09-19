@@ -24,6 +24,17 @@ public class DB {
         return connection;
     }
 
+    public static void closeConnection(){
+        if(connection != null){
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new DbExecption(e.getMessage());
+            }
+        }
+    }
+
+
     public static Properties loadProperties(){
         Properties properties = new Properties();
         try (FileInputStream fileInputStream = new FileInputStream("db.properties")){
