@@ -12,6 +12,10 @@ public class Seller {
 
     private Department department;
 
+    public Seller(Integer id) {
+        this.id = id;
+    }
+
     public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
         this.id = id;
         this.name = name;
@@ -87,6 +91,7 @@ public class Seller {
 
     @Override
     public String toString() {
-        return "Department [id=" + id + ", name=" + name + "]";//
+        return "Seller [id=" + id + ", name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", baseSalary="
+                + baseSalary + ", department=" + department + "]";//
     }
 }
