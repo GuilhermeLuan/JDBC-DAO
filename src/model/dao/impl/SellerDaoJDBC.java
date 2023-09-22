@@ -51,19 +51,11 @@ public class SellerDaoJDBC implements SellerDao {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
-                Department department = new Department();
-                department.setId(resultSet.getInt("DepartmentId"));
-                department.setName(resultSet.getString("DepName"));
-
-                Seller seller = new Seller();
-                seller.setId(resultSet.getInt("Id"));
-                seller.setName(resultSet.getString("Name"));
-                seller.setEmail(resultSet.getString("Email"));
-                seller.setBaseSalary(resultSet.getDouble("BaseSalary"));
-                seller.setBirthDate(resultSet.getDate("BirthDate"));
-                seller.setDepartment(department);
+                Department department = instantiateDepartment(resultSet);
+                Seller seller = instantiateSeller(resultSet, department);
                 return seller;
             }
+            return null;
 
         } catch (SQLException e){
             throw new DbExecption(e.getMessage());
@@ -71,7 +63,24 @@ public class SellerDaoJDBC implements SellerDao {
             DB.closeStatement(preparedStatement);
             DB.closeResultSet(resultSet);
         }
-        return null;
+    }
+
+    private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
+        Seller obj = new Seller();
+        obj.setId(rs.getInt("Id"));
+        obj.setName(rs.getString("Name"));
+        obj.setEmail(rs.getString("Email"));
+        obj.setBaseSalary(rs.getDouble("BaseSalary"));
+        obj.setBirthDate(rs.getDate("BirthDate"));
+        obj.setDepartment(dep);
+        return obj;
+    }
+
+    private Department instantiateDepartment(ResultSet rs) throws SQLException {
+        Department dep = new Department();
+        dep.setId(rs.getInt("DepartmentId"));
+        dep.setName(rs.getString("DepName"));
+        return dep;
     }
 
     @Override
@@ -83,4 +92,5 @@ public class SellerDaoJDBC implements SellerDao {
     public List<Seller> findByDepartment(Department department) {
         return null;
     }
+
 }
