@@ -31,7 +31,7 @@ public class Main {
             System.out.println(obj);
         }
 
-        System.out.print("---- Insert ----");
+        System.out.println("---- Test Insert ----");
         Seller newSeller = new Seller(
                 "Guilherme Luan",
                 "guilhermeluan@gmail.com",
@@ -41,6 +41,11 @@ public class Main {
         sellerDao.insert(newSeller);
         System.out.println("Inserted! New id = " + newSeller.getId());
 
+        System.out.println("---- Test Update ----");
+        Seller seller = sellerDao.findById(1);
+        seller.setName("Luan Silva");
+        sellerDao.update(seller);
+        System.out.println("Update completed");
 
     }
 }
