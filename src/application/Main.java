@@ -47,5 +47,8 @@ public class Main {
         sellerDao.update(seller);
         System.out.println("Update completed");
 
+        System.out.println("---- Delete test ----");
+        sellerDao.deleteById(23);
+        System.out.println("Delete with success!");
     }
 }
