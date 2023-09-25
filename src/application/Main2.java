@@ -20,5 +20,11 @@ public class Main2 {
                 list2) {
             System.out.println(obj);
         }
+
+        System.out.println("---- Test Insert ----");
+        Department newDepartment = new Department(null, "Games");
+        departmentDao.insert(newDepartment);
+        System.out.println("Inserted! New id = " + newDepartment.getId());
+
     }
 }
