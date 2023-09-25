@@ -32,5 +32,8 @@ public class Main2 {
         departmentDao.update(department);
         System.out.println("Update completed");
 
+        System.out.println("---- Delete test ----");
+        departmentDao.deleteById(10);
+        System.out.println("Delete with success!");
     }
 }
